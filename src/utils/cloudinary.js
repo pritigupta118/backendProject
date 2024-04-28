@@ -12,11 +12,13 @@ try {
   if(!localPath) return null
 
   //upload the file on cloudinary
-  const result = await cloudinary.uploader.upload(localPath);
+  const result = await cloudinary.uploader.upload(localPath, {
+    resource_type: "auto"
+  });
 
   console.log('file is uploaded on cloudinary',result.url);
 
-  fs.unlinkSync(localPath) //delete the local file after uploading to clodinary
+  //fs.unlinkSync(localPath) //delete the local file after uploading to clodinary
 
   return result;
 
